@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>CSS Testing</title>
+
+		<meta name="author" content="Justin Wark">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+
+				<section>
+					<h2>CSS Testing</h2>
+					<h5>By Justin Wark</h5>
+				</section>
+
+
+				<section>
+					<h3>Automated Tests for CSS</h3>
+					<p>Why?</p>
+					<ul>
+						<li class="fragment">Media Queries multiply combinations to visually test/inspect.</li>
+						<li class="fragment">Wanted to be able to refactor/restructure CSS without breakage.</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h3>Automated Tests for CSS</h3>
+					<p>Example:</p>
+					<div>
+						<p>Collapsed areaStatusChart on iPhone, portrait/landscape behaviour, font sizes on pages/components, etc</p>
+
+						<img src="assets/ipad_status_chart.png" style="width: 30%" />
+						<img src="assets/iphone_status_chart.png" style="width: 20%" />
+						<img src="assets/iphone_status_chart_expanded.png" style="width: 20%" />
+					</div>
+				</section>
+
+
+				<section>
+					<h3>Automated Tests for CSS</h3>
+					<p>Requirements:</p>
+					<ul>
+						<li>Isolate test failures to the individual component/state which is affected</li>
+						<li class="fragment">MUST run on CI</li>
+						<li class="fragment">Needs to run relatively fast (locally at least)</li>
+						<li class="fragment">Easy to use for local development</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h3>Automated Tests for CSS</h3>
+						<p>Existing tools:</p>
+						<ul>
+							<li>CasperJS</li>
+							<ul>
+								<li>based on PhantomJS (fast, headless, CI scriptable)</li>
+								<li>a whole other testing framework</li>
+								<li>does capture images (whole page or selector), but DOES NOT do comparisons</li>
+							</ul>
+							<li class="fragment">CSS Critic</li>
+							<ul class="fragment">
+								<li>very visual web based tool; save, appect/reject captured images</li>
+								<li>a whole other testing framework</li>
+								<li>saves capture images in browser localstorage, so NOT useful for CI</li>
+							</ul>
+						</ul>
+				</section>
+
+
+				<section>
+					<h3>Automated Tests for CSS</h3>
+					<p>Thoughts/Ideas:</p>
+					<ul>
+						<li>iframes for media queries</li>
+						<ul><li>Existing manual demos: <a href="http://localhost:8200/test/functional/src/www/demo.html?demo=app/statusSelectFieldDemo.js">statusSelectFieldDemo.js</a></li></ul>
+						<li class="fragment">Screenshot of component on page, rather than whole page?</li>
+						<li class="fragment">Image capture in PhantomJS vs Chrome/Safari?</li>
+						<li class="fragment">Possibly image capture in PhantomJS, but Jasmine spec for diff comparison &amp; reporting?</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h3>Automated Tests for CSS</h3>
+					<p>DEMO TIME!</p>
+					<pre><code>
+	$ jake test:css
+	$ jake test:css:compare[textfield]
+
+	$ jake test:css:demo[textfield]
+
+	$ jake test:css:accept-images
+					</code></pre>
+				</section>
+
+
+				<section>
+					<h3>Automated Tests for CSS</h3>
+					<p>Prototype:</p>
+					<ul>
+						<li>Used jake tasks, but should really migrate to grunt or rake</li>
+						<li>Runs up new phantomjs process for each compare</li>
+						<ul>
+							<li>Currently taking 3 mins to do 90 comparisons (2 sec/comparison)</li>
+						</ul>
+						<li>Uses CasperJS, but really only need PhantomJS for image capture</li>
+						<li>Uses ImageMagick, but can do image comparison using HTML5 canvas</li>
+						<li>Could capture images with PhantomJS and compare using Jasmine?</li>
+						<li>Could screenshot components on page, rather than whole page?</li>
+					</ul>
+				</section>
+
+
+				<section>
+					<h3>Automated Tests for CSS</h3>
+					<p>Limitations:</p>
+					<ul>
+						<li>Must run on same O/S currently</li>
+						<ul>
+							<li>Font antialiasing (-webkit-font-smoothing: none;)</li>
+							<li>scroll bars</li>
+						</ul>
+					</ul>
+				</section>
+
+
+				<section>
+					<h1>THE END</h1>
+					<h3 class="inverted">BY Justin Wark</h3>
+					<h3 class="inverted">twitter: @justinwark</h3>
+					<h3>&nbsp;</h3>
+					<h3 class="inverted">check out:</h3>
+					<ul>
+						<li><a href="https://github.com/mde/jake">https://github.com/mde/jake</a></li>
+						<li><a href="https://github.com/jwark/jake-presentation">https://github.com/jwark/jake-presentation</a> (includes code samples)</li>
+						<li><a href="http://casperjs.org/">http://casperjs.org/</a></li>
+						<li><a href="https://github.com/cburgmer/csscritic">https://github.com/cburgmer/csscritic</a></li>
+					</ul>
+				</section>
+
+
+
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+			<div class="progress"><span></span></div>
+
+		</div>
+
+		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+		<script src="lib/highlight.js"></script>
+		<script src="lib/classList.js"></script>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// Parse the query string into a key/value object
+			var query = {};
+			location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+			} );
+
+			// Fires when a slide with data-state=customevent is activated
+			Reveal.addEventListener( 'customevent', function() {
+				alert( '"customevent" has fired' );
+			} );
+
+			// Fires each time a new slide is activated
+			Reveal.addEventListener( 'slidechanged', function( event ) {
+				// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+			} );
+
+			Reveal.initialize({
+				// Display controls in the bottom right corner
+				controls: true,
+
+				// Display a presentation progress bar
+				progress: true,
+
+				// If true; each slide will be pushed to the browser history
+				history: true,
+
+				// Loops the presentation, defaults to false
+				loop: false,
+
+				// Flags if mouse wheel navigation should be enabled
+				mouseWheel: true,
+
+				// Apply a 3D roll to links on hover
+				rollingLinks: true,
+
+				// UI style
+				theme: query.theme || 'default', // default/neon
+
+				// Transition style
+				transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+			});
+
+			hljs.initHighlightingOnLoad();
+		</script>
+
+	</body>
+</html>
