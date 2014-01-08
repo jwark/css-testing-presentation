@@ -37,7 +37,7 @@
 
 
 				<section>
-					<h3>Automated Tests for CSS</h3>
+					<h3>Testing CSS</h3>
 					<p>Why?</p>
 					<ul>
 						<li class="fragment">Media Queries multiply combinations to visually test/inspect.</li>
@@ -47,8 +47,8 @@
 
 
 				<section>
-					<h3>Automated Tests for CSS</h3>
-					<p>Example:</p>
+					<h3>Testing CSS</h3>
+					<p>Real world example:</p>
 					<div>
 						<p>Collapsed areaStatusChart on iPhone, portrait/landscape behaviour, font sizes on pages/components, etc</p>
 
@@ -56,6 +56,17 @@
 						<img src="assets/iphone_status_chart.png" style="width: 20%" />
 						<img src="assets/iphone_status_chart_expanded.png" style="width: 20%" />
 					</div>
+				</section>
+
+
+				<section>
+					<h3>Testing CSS</h3>
+					<p>Component demo pages:</p>
+					<ul>
+						<li>Visualise a component in all states</li>
+						<li>Can also be used to interact with a component</li>
+						<li>Example: <a href="http://localhost:8200/test/functional/src/www/demo.html?demo=widgets/fields/textFieldDemo.js">textFieldDemo.js</a></li>
+					</ul>
 				</section>
 
 
@@ -93,27 +104,15 @@
 
 				<section>
 					<h3>Automated Tests for CSS</h3>
-					<p>Thoughts/Ideas:</p>
-					<ul>
-						<li>iframes for media queries</li>
-						<ul><li>Existing manual demos: <a href="http://localhost:8200/test/functional/src/www/demo.html?demo=app/statusSelectFieldDemo.js">statusSelectFieldDemo.js</a></li></ul>
-						<li class="fragment">Screenshot of component on page, rather than whole page?</li>
-						<li class="fragment">Image capture in PhantomJS vs Chrome/Safari?</li>
-						<li class="fragment">Possibly image capture in PhantomJS, but Jasmine spec for diff comparison &amp; reporting?</li>
-					</ul>
-				</section>
-
-
-				<section>
-					<h3>Automated Tests for CSS</h3>
 					<p>DEMO TIME!</p>
 					<pre><code>
-	$ jake test:css
-	$ jake test:css:compare[textfield]
+	$ grunt test:css:demo:auth*dialog
+	$ grunt test:css:compare:auth*dialog
 
-	$ jake test:css:demo[textfield]
+	// to run all
+	$ grunt test:css
 
-	$ jake test:css:accept-images
+	$ grunt test:css:accept-images
 					</code></pre>
 				</section>
 
@@ -122,7 +121,7 @@
 					<h3>Automated Tests for CSS</h3>
 					<p>Prototype:</p>
 					<ul>
-						<li>Used jake tasks, but should really migrate to grunt or rake</li>
+						<li>resize browser window to trigger media queries</li>
 						<li>Runs up new phantomjs process for each compare</li>
 						<ul>
 							<li>Currently taking 3 mins to do 90 comparisons (2 sec/comparison)</li>
@@ -155,8 +154,6 @@
 					<h3>&nbsp;</h3>
 					<h3 class="inverted">check out:</h3>
 					<ul>
-						<li><a href="https://github.com/mde/jake">https://github.com/mde/jake</a></li>
-						<li><a href="https://github.com/jwark/jake-presentation">https://github.com/jwark/jake-presentation</a> (includes code samples)</li>
 						<li><a href="http://casperjs.org/">http://casperjs.org/</a></li>
 						<li><a href="https://github.com/cburgmer/csscritic">https://github.com/cburgmer/csscritic</a></li>
 					</ul>
