@@ -137,12 +137,10 @@
 					<h3>Automated Tests for CSS</h3>
 					<p>Prototype:</p>
 					<ul>
-						<li>resize browser window to trigger media queries</li>
-						<li>Runs up new phantomjs process for each compare</li>
-						<ul>
-							<li>Currently taking 1min 30sec to do 90 (1 sec/comparison)</li>
-						</ul>
-						<li>Image capture uses CasperJS, really only need PhantomJS</li>
+						<li>resizes browser window to trigger media queries</li>
+						<li>Runs up new phantomjs process to get screenshot</li>
+						<li>Image capture uses PhantomJS</li>
+						<li>Currently taking 1min 30sec to do 90 tests (1 sec/test)</li>
 						<li>Image compare uses ImageMagick, could use HTML5 canvas</li>
 						<li>Could capture images with PhantomJS and compare using Jasmine?</li>
 						<li>Could screenshot components, rather than whole page?</li>
